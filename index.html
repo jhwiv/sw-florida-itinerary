@@ -235,6 +235,130 @@
     .day-body strong { color: var(--gray-900); font-weight: 600; }
     .footer { text-align: center; padding: 12px 0 20px; font-size: 0.75rem; color: var(--gray-400); border-top: 1px solid var(--gray-200); }
 
+    /* ===== TAB BAR ===== */
+    .tab-bar {
+      display: flex;
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-200);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .tab-btn {
+      flex: 1;
+      padding: 12px 0;
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-align: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--gray-400);
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .tab-btn.active {
+      color: var(--navy);
+      border-bottom-color: var(--gold);
+    }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ===== PLANNING TAB ===== */
+    .plan-card {
+      background: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+      margin-bottom: 10px;
+    }
+    .plan-card-header {
+      padding: 10px 16px 0;
+    }
+    .plan-card-header h3 {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 2px;
+    }
+    .plan-card-header .plan-type {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+    }
+    .plan-card-body {
+      padding: 8px 16px 12px;
+    }
+    .plan-card-body p {
+      font-size: 0.83rem;
+      color: var(--gray-600);
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+    .plan-card-body p:last-child { margin-bottom: 0; }
+    .plan-detail-grid {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 3px 12px;
+      font-size: 0.82rem;
+      margin-top: 8px;
+    }
+    .plan-detail-grid dt {
+      color: var(--gray-400);
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding-top: 1px;
+    }
+    .plan-detail-grid dd {
+      color: var(--gray-700);
+    }
+    .plan-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .plan-badge.action { background: #FFF3E0; color: #E65100; }
+    .plan-badge.booked { background: #E8F5E9; color: var(--green); }
+    .plan-badge.backup { background: var(--gray-100); color: var(--gray-600); }
+    .plan-suggested {
+      margin-top: 14px;
+    }
+    .plan-suggested h3 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .sched-row {
+      display: flex;
+      gap: 12px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--gray-100);
+      font-size: 0.83rem;
+    }
+    .sched-row:last-child { border-bottom: none; }
+    .sched-date {
+      font-weight: 700;
+      color: var(--gold);
+      min-width: 80px;
+      font-size: 0.8rem;
+    }
+    .sched-desc { color: var(--gray-600); line-height: 1.5; }
+    .sched-desc strong { color: var(--gray-900); font-weight: 600; }
+
     /* ===== ADD TO HOME SCREEN BANNER ===== */
     .a2hs-banner {
       display: none;
@@ -344,7 +468,7 @@
     </div>
   </section>
 
-  <!-- Itinerary -->
+  <!-- Main Content -->
   <div id="itinerary">
     <header class="hero">
       <div class="container">
@@ -352,6 +476,15 @@
         <div class="subtitle">All confirmations verified &middot; April 1, 2026</div>
       </div>
     </header>
+
+    <!-- Tab Bar -->
+    <nav class="tab-bar">
+      <button class="tab-btn active" data-tab="tab-itinerary">Itinerary</button>
+      <button class="tab-btn" data-tab="tab-planning">Planning</button>
+    </nav>
+
+    <!-- Tab: Itinerary -->
+    <div id="tab-itinerary" class="tab-panel active">
     <main class="container">
       <section class="section">
         <h2 class="section-title">Flights</h2>
@@ -439,6 +572,147 @@
         <div class="day-card"><div class="day-header"><span class="day-date">Thu, Apr 23</span><span class="day-title">Departure</span></div><div class="day-body">Residence Inn checkout by 12:00 PM. Hertz drop-off at RSW by 9:00 AM. UA 2461 departs 11:01 AM → EWR 2:00 PM.</div></div>
       </section>
     </main>
+    </div>
+
+    <!-- Tab: Planning -->
+    <div id="tab-planning" class="tab-panel">
+    <main class="container">
+
+      <section class="section">
+        <h2 class="section-title">Off-Property Activities</h2>
+
+        <div class="plan-card">
+          <div class="plan-card-header">
+            <span class="plan-type">Experience</span>
+            <h3>Old Naples: Fifth Ave, Third St &amp; Pier</h3>
+          </div>
+          <div class="plan-card-body">
+            <p>The sophisticated heart of Naples — European-leaning boutiques, galleries, upscale cafes, and the best people-watching on Florida's west coast.</p>
+            <dl class="plan-detail-grid">
+              <dt>Start</dt><dd>Mid-afternoon, 3–4 PM</dd>
+              <dt>Route</dt><dd>Third Street South → Fifth Avenue South → Naples Pier at sunset</dd>
+              <dt>Pairs with</dt><dd>Dinner at USS Nemo or Truluck's nearby</dd>
+              <dt>Best night</dt><dd>Any non-travel evening</dd>
+            </dl>
+          </div>
+        </div>
+
+        <div class="plan-card">
+          <div class="plan-card-header">
+            <span class="plan-type">Experience</span>
+            <h3>Everglades / Ten Thousand Islands Wildlife Tour</h3>
+          </div>
+          <div class="plan-card-body">
+            <p>A UNESCO-designated biosphere reserve — small-group, naturalist-led skiff tours for roseate spoonbills, alligators, osprey, dolphins, and manatees. Avoid high-volume airboat experiences.</p>
+            <dl class="plan-detail-grid">
+              <dt>Operators</dt><dd>Everglades Adventure Tours, Everglades National Park Adventures</dd>
+              <dt>Departs</dt><dd>Everglades City / Marco Island (~45–60 min from Tiburón)</dd>
+              <dt>Duration</dt><dd>2–3 hrs on water, ~4–5 hrs door-to-door</dd>
+              <dt>Timing</dt><dd>Morning departure (7–9 AM) — cooler, more wildlife, better light</dd>
+              <dt>Best day</dt><dd>Sun, Apr 19 or Mon, Apr 20</dd>
+            </dl>
+            <p style="margin-top:8px"><span class="plan-badge action">Book now — April is peak season</span></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Dinner Recommendations</h2>
+
+        <div class="plan-card">
+          <div class="plan-card-header">
+            <span class="plan-type">Dining &middot; <span class="plan-badge booked" style="font-size:0.68rem">Confirmed</span></span>
+            <h3>Hogfish Harry's Restaurant + Bar</h3>
+          </div>
+          <div class="plan-card-body">
+            <dl class="plan-detail-grid">
+              <dt>When</dt><dd><strong>Mon, Apr 20 &middot; 6:30 PM</strong></dd>
+              <dt>Cuisine</dt><dd>Seafood &amp; craft cocktails</dd>
+              <dt>Seating</dt><dd>Outdoor, party of 2</dd>
+            </dl>
+          </div>
+        </div>
+
+        <div class="plan-card">
+          <div class="plan-card-header">
+            <span class="plan-type">Dining &middot; <span class="plan-badge action" style="font-size:0.68rem">Needs reservation</span></span>
+            <h3>USS Nemo Restaurant</h3>
+          </div>
+          <div class="plan-card-body">
+            <p>Most frequently cited top-ranked restaurant in Naples across 2026 luxury guides. Serious, chef-driven Asian-fusion seafood in a design-forward room.</p>
+            <dl class="plan-detail-grid">
+              <dt>Cuisine</dt><dd>Upscale seafood, Asian-fusion</dd>
+              <dt>Vibe</dt><dd>Chef-driven, intimate, design-forward</dd>
+              <dt>Location</dt><dd>Central Naples (~20 min from Tiburón)</dd>
+              <dt>Book</dt><dd>OpenTable — target 5:45–6:00 PM</dd>
+              <dt>Best night</dt><dd>Tue, Apr 21 or Wed, Apr 22</dd>
+            </dl>
+          </div>
+        </div>
+
+        <div class="plan-card">
+          <div class="plan-card-header">
+            <span class="plan-type">Dining &middot; <span class="plan-badge action" style="font-size:0.68rem">Needs reservation</span></span>
+            <h3>The Grill at Ritz-Carlton Beach</h3>
+          </div>
+          <div class="plan-card-body">
+            <p>Naples' premier classic fine-dining — prime steaks, caviar service, deep wine cellar, white-glove service. The Grande Dame of Florida's west coast.</p>
+            <dl class="plan-detail-grid">
+              <dt>Cuisine</dt><dd>Classic steakhouse, prime cuts, caviar</dd>
+              <dt>Vibe</dt><dd>White-tablecloth, formal</dd>
+              <dt>Location</dt><dd>Ritz-Carlton Naples Beach (~20 min)</dd>
+              <dt>Book</dt><dd>Marriott portal or OpenTable — target 6:00 PM</dd>
+              <dt>Tip</dt><dd>Mention Tiburón guest status for reciprocal courtesies</dd>
+              <dt>Best night</dt><dd>Sun, Apr 19 or Mon, Apr 20</dd>
+            </dl>
+          </div>
+        </div>
+
+        <div class="plan-card">
+          <div class="plan-card-header">
+            <span class="plan-type">Dining &middot; <span class="plan-badge backup" style="font-size:0.68rem">Backup</span></span>
+            <h3>Truluck's — Ocean's Finest Seafood &amp; Crab</h3>
+          </div>
+          <div class="plan-card-body">
+            <p>Strong alternative if a third evening warrants another high-end dinner. Gulf and cold-water seafood, stone crab in season. Natural pairing with an Old Naples evening stroll.</p>
+            <dl class="plan-detail-grid">
+              <dt>Cuisine</dt><dd>Upscale Gulf seafood, stone crab</dd>
+              <dt>Location</dt><dd>Fifth Avenue South, central Naples</dd>
+              <dt>Book</dt><dd>OpenTable — 5:45–6:30 PM</dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="plan-suggested">
+          <h3>Suggested Schedule</h3>
+          <div class="plan-card" style="padding:12px 16px">
+            <div class="sched-row"><span class="sched-date">Sat, Apr 18</span><span class="sched-desc"><strong>Arrival</strong> — settle in, casual dinner on property</span></div>
+            <div class="sched-row"><span class="sched-date">Sun, Apr 19</span><span class="sched-desc"><strong>AM:</strong> Everglades tour → <strong>Dinner:</strong> The Grill at Ritz Beach</span></div>
+            <div class="sched-row"><span class="sched-date">Mon, Apr 20</span><span class="sched-desc">Leisure / Golf → <strong>Dinner:</strong> Hogfish Harry's 6:30 PM</span></div>
+            <div class="sched-row"><span class="sched-date">Tue, Apr 21</span><span class="sched-desc">Leisure → <strong>Dinner:</strong> USS Nemo</span></div>
+            <div class="sched-row"><span class="sched-date">Wed, Apr 22</span><span class="sched-desc">Checkout → Fort Myers → Truluck's or casual</span></div>
+            <div class="sched-row"><span class="sched-date">Thu, Apr 23</span><span class="sched-desc">Old Naples afternoon (Third St, Fifth Ave, Pier) → Departure</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Action Items</h2>
+        <div class="plan-card" style="padding:12px 16px">
+          <div style="font-size:0.83rem;color:var(--gray-700);line-height:1.8">
+            <div>1. <strong>USS Nemo</strong> — Book on OpenTable for Apr 21 or 22, 5:45–6:00 PM</div>
+            <div>2. <strong>The Grill at Ritz Beach</strong> — Book via Marriott or OpenTable for Apr 19 or 20, 6:00 PM</div>
+            <div>3. <strong>Everglades Tour</strong> — Book morning slot for Apr 19 or 20</div>
+            <div>4. <strong>Truluck's</strong> — Hold as backup; book if a third evening opens</div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+    </div>
+
     <footer class="footer"><div class="container">Prepared April 1, 2026 &middot; All confirmations verified from email and reservation records</div></footer>
   </div>
 
@@ -460,14 +734,22 @@
 
   <script>
   (function() {
-    // Show only on iOS Safari, not already in standalone mode
+    // Tab switching
+    document.querySelectorAll('.tab-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+        document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.tab).classList.add('active');
+      });
+    });
+
+    // iOS Add to Home Screen
     var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
     var isStandalone = window.navigator.standalone === true;
-    var isSafari = /Safari/.test(navigator.userAgent) && !/CriOS|FxiOS|EdgiOS/.test(navigator.userAgent);
     var dismissed = localStorage.getItem('a2hs_dismissed');
 
     if (isIOS && !isStandalone && !dismissed) {
-      // Show after a short delay so the page loads first
       setTimeout(function() {
         document.getElementById('a2hsBanner').style.display = 'block';
       }, 2000);
