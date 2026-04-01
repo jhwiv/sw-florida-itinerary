@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Southwest Florida — April 18–23, 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1B2A4A;
+      --navy-light: #2C3E5A;
+      --gold: #C5963A;
+      --gold-light: #D4A94E;
+      --cream: #FAF8F5;
+      --white: #FFFFFF;
+      --gray-50: #F7F7F7;
+      --gray-100: #EFEFEF;
+      --gray-200: #E2E2E2;
+      --gray-400: #999999;
+      --gray-600: #666666;
+      --gray-700: #4A4A4A;
+      --gray-900: #1A1A1A;
+      --green: #2D8A4E;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--cream);
+      color: var(--gray-900);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+      color: var(--white);
+      padding: 56px 0 48px;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .hero .subtitle {
+      font-size: 1.125rem;
+      color: rgba(255,255,255,0.8);
+      font-weight: 400;
+    }
+    .hero .gold-rule {
+      width: 64px;
+      height: 3px;
+      background: var(--gold);
+      margin-top: 20px;
+      border-radius: 2px;
+    }
+    .travelers {
+      margin-top: 32px;
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.7);
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding-top: 16px;
+    }
+
+    /* Sections */
+    .section {
+      padding: 40px 0;
+    }
+    .section + .section {
+      border-top: 1px solid var(--gray-200);
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 24px;
+      letter-spacing: -0.01em;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--white);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+      margin-bottom: 16px;
+    }
+    .card-header {
+      background: var(--navy);
+      color: var(--white);
+      padding: 12px 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .card-body {
+      padding: 20px;
+    }
+    .card-body p {
+      font-size: 0.9rem;
+      color: var(--gray-600);
+      margin-top: 4px;
+    }
+
+    /* Flight rows */
+    .flight-route {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .flight-route .time {
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .flight-details {
+      font-size: 0.85rem;
+      color: var(--gray-600);
+      margin-top: 4px;
+    }
+    .flight-conf {
+      text-align: right;
+      font-size: 0.85rem;
+      color: var(--gray-600);
+      margin-top: 8px;
+    }
+    .flight-conf strong {
+      color: var(--gray-900);
+    }
+    .flight-note {
+      font-size: 0.82rem;
+      color: var(--gray-400);
+      font-style: italic;
+      padding: 12px 20px;
+      border-top: 1px solid var(--gray-100);
+    }
+
+    /* Hotel cards */
+    .hotel-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .hotel-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px 24px;
+    }
+    .hotel-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--gray-400);
+    }
+    .hotel-value {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--gray-900);
+      margin-bottom: 12px;
+    }
+    .hotel-meta {
+      font-size: 0.82rem;
+      color: var(--gray-600);
+      margin-top: 4px;
+      line-height: 1.7;
+    }
+    .hotel-conf {
+      margin-top: 12px;
+      font-size: 0.85rem;
+    }
+    .hotel-conf strong {
+      color: var(--gray-900);
+    }
+    .hotel-cancel {
+      font-size: 0.78rem;
+      color: var(--gray-400);
+      margin-top: 8px;
+      font-style: italic;
+    }
+
+    /* Rental car */
+    .rental-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .rental-vehicle {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gray-900);
+    }
+    .rental-price {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .rental-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px 24px;
+      margin-top: 16px;
+    }
+
+    /* Dining */
+    .dining-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .dining-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gray-900);
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #E8F5E9;
+      color: var(--green);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+    .badge::before {
+      content: '✓';
+      font-weight: 700;
+    }
+    .dining-details {
+      margin-top: 12px;
+    }
+    .dining-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      color: var(--gray-700);
+      padding: 4px 0;
+    }
+
+    /* Day-by-day */
+    .day-card {
+      background: var(--white);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+      margin-bottom: 12px;
+    }
+    .day-header {
+      display: flex;
+      gap: 16px;
+      align-items: baseline;
+      padding: 16px 20px 0;
+    }
+    .day-date {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--gold);
+      min-width: 90px;
+    }
+    .day-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .day-body {
+      padding: 8px 20px 16px;
+      margin-left: 106px;
+      font-size: 0.88rem;
+      color: var(--gray-600);
+      line-height: 1.7;
+    }
+    .day-body strong {
+      color: var(--gray-900);
+      font-weight: 600;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 32px 0 48px;
+      font-size: 0.78rem;
+      color: var(--gray-400);
+      border-top: 1px solid var(--gray-200);
+    }
+
+    /* Print */
+    @media print {
+      body { background: white; }
+      .hero { background: var(--navy) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .card, .day-card { box-shadow: none; border: 1px solid var(--gray-200); }
+    }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 1.8rem; }
+      .hero .subtitle { font-size: 1rem; }
+      .hotel-grid, .rental-grid { grid-template-columns: 1fr; }
+      .day-body { margin-left: 0; }
+      .day-header { flex-direction: column; gap: 2px; }
+      .flight-route { flex-direction: column; align-items: flex-start; gap: 4px; }
+      .dining-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="container">
+      <h1>Southwest Florida</h1>
+      <div class="subtitle">April 18 – 23, 2026 &middot; Naples &amp; Fort Myers</div>
+      <div class="gold-rule"></div>
+      <div class="travelers">Travelers: James Wilkes &amp; Lisa Orazietti</div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Flights -->
+    <section class="section">
+      <h2 class="section-title">Flights</h2>
+
+      <div class="card">
+        <div class="card-header">
+          <span>Outbound</span>
+          <span>Saturday, April 18</span>
+        </div>
+        <div class="card-body">
+          <div class="flight-route">
+            <span>UA 1115 &middot; EWR → RSW</span>
+            <span class="time">6:45 AM – 9:49 AM</span>
+          </div>
+          <div class="flight-details">Nonstop &middot; 3h 4m &middot; United First &middot; Boeing 737-900 &middot; Meal service</div>
+          <div class="flight-details">Seats: 2E (JW) / 2F (LO)</div>
+          <div class="flight-conf">Conf: <strong>GP77E1</strong></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span>Return</span>
+          <span>Thursday, April 23</span>
+        </div>
+        <div class="card-body">
+          <div class="flight-route">
+            <span>UA 2461 &middot; RSW → EWR</span>
+            <span class="time">11:01 AM – 2:00 PM</span>
+          </div>
+          <div class="flight-details">Nonstop &middot; 2h 59m &middot; United First &middot; Boeing 737 MAX 8 &middot; Meal service</div>
+          <div class="flight-details">Seats: 1E (JW) / 1F (LO)</div>
+          <div class="flight-conf">Conf: <strong>GP77E1</strong></div>
+        </div>
+        <div class="flight-note">Travel Guard insurance included &middot; 2 checked bags per passenger included (70 lb each)</div>
+      </div>
+    </section>
+
+    <!-- Accommodations -->
+    <section class="section">
+      <h2 class="section-title">Accommodations</h2>
+
+      <div class="card">
+        <div class="card-body">
+          <div class="hotel-name">The Ritz-Carlton Naples, Tiburón</div>
+          <div class="hotel-grid">
+            <div>
+              <div class="hotel-label">Check-in</div>
+              <div class="hotel-value">Sat, Apr 18 &middot; 4:00 PM</div>
+            </div>
+            <div>
+              <div class="hotel-label">Check-out</div>
+              <div class="hotel-value">Wed, Apr 22 &middot; 11:00 AM</div>
+            </div>
+          </div>
+          <div class="hotel-meta">
+            Club Golf View &middot; King &middot; Balcony &middot; Club Lounge Access<br>
+            <strong>4 nights</strong><br>
+            2600 Tiburon Drive, Naples, FL 34109 &middot; (239) 593-2000<br>
+            Points redemption (660,000 pts) &middot; Taxes/fees: $266.40 &middot; Valet: $40/day
+          </div>
+          <div class="hotel-conf">Conf: <strong>88300529</strong></div>
+          <div class="hotel-cancel">Cancel by Apr 11 at 11:59 PM (7-day policy) &middot; Platinum Elite benefits apply</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <div class="hotel-name">Residence Inn Fort Myers — I-75 &amp; Gulf Coast Town Center</div>
+          <div class="hotel-grid">
+            <div>
+              <div class="hotel-label">Check-in</div>
+              <div class="hotel-value">Wed, Apr 22 &middot; 4:00 PM</div>
+            </div>
+            <div>
+              <div class="hotel-label">Check-out</div>
+              <div class="hotel-value">Thu, Apr 23 &middot; 12:00 PM</div>
+            </div>
+          </div>
+          <div class="hotel-meta">
+            1-Bedroom King Suite &middot; Sofa bed &middot; 2 adults<br>
+            <strong>1 night</strong><br>
+            10054 Gulf Center Drive, Fort Myers, FL 33913 &middot; (239) 332-7001<br>
+            Points redemption (41,000 pts) &middot; Taxes included &middot; Complimentary parking &amp; breakfast
+          </div>
+          <div class="hotel-conf">Conf: <strong>88308393</strong></div>
+          <div class="hotel-cancel">Cancel by Apr 20 at 11:59 PM (2-day policy) &middot; Platinum Elite benefits apply</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rental Car -->
+    <section class="section">
+      <h2 class="section-title">Rental Car</h2>
+      <div class="card">
+        <div class="card-body">
+          <div class="rental-header">
+            <div class="rental-vehicle">HERTZ &middot; Volvo XC90 Hybrid Prestige</div>
+            <div class="rental-price">$383.18</div>
+          </div>
+          <div class="rental-grid">
+            <div>
+              <div class="hotel-label">Pickup</div>
+              <div class="hotel-value">Sat, Apr 18 &middot; 9:00 AM &middot; RSW Airport</div>
+            </div>
+            <div>
+              <div class="hotel-label">Drop-off</div>
+              <div class="hotel-value">Thu, Apr 23 &middot; 9:00 AM &middot; RSW Airport</div>
+            </div>
+          </div>
+          <div class="hotel-meta">
+            Luxury 7-Passenger SUV &middot; Unlimited miles &middot; Amex Platinum discount applied<br>
+            Hertz Gold Plus Rewards #36332033
+          </div>
+          <div class="hotel-conf">Conf: <strong>L5451603291</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dining -->
+    <section class="section">
+      <h2 class="section-title">Dining</h2>
+      <div class="card">
+        <div class="card-body">
+          <div class="dining-header">
+            <div class="dining-name">Hogfish Harry's Restaurant + Bar</div>
+            <div class="badge">Confirmed</div>
+          </div>
+          <div class="dining-details">
+            <div class="dining-row">
+              <span>Monday, April 20 &middot; 6:30 PM</span>
+              <span><strong>Party of 2</strong></span>
+            </div>
+            <div class="dining-row">
+              <span>Outdoor seating &middot; Host: James Wilkes</span>
+            </div>
+            <div class="dining-row">
+              <span>Naples, FL &middot; Seafood &amp; craft cocktails</span>
+              <span style="color: var(--gray-400); font-style: italic; font-size: 0.82rem;">via OpenTable</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Day-by-Day -->
+    <section class="section">
+      <h2 class="section-title">Day-by-Day Overview</h2>
+
+      <div class="day-card">
+        <div class="day-header">
+          <span class="day-date">Sat, Apr 18</span>
+          <span class="day-title">Travel &amp; Arrival</span>
+        </div>
+        <div class="day-body">
+          UA 1115 departs EWR 6:45 AM → RSW 9:49 AM. Hertz pickup. Settle in at Ritz-Carlton Tiburón by 4:00 PM. Explore Club Lounge and resort grounds.
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div class="day-header">
+          <span class="day-date">Sun, Apr 19</span>
+          <span class="day-title">Naples — Day 1</span>
+        </div>
+        <div class="day-body">
+          Full day at leisure. Golf at Tiburón (Gold or Black course), spa, beach, or explore downtown Naples and Fifth Avenue South.
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div class="day-header">
+          <span class="day-date">Mon, Apr 20</span>
+          <span class="day-title">Naples — Day 2</span>
+        </div>
+        <div class="day-body">
+          Day at leisure. <strong>Dinner: Hogfish Harry's at 6:30 PM</strong> — outdoor seating, party of 2.
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div class="day-header">
+          <span class="day-date">Tue, Apr 21</span>
+          <span class="day-title">Naples — Day 3</span>
+        </div>
+        <div class="day-body">
+          Final full day in Naples. Last round of golf, spa treatment, or a drive to Marco Island or the Everglades.
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div class="day-header">
+          <span class="day-date">Wed, Apr 22</span>
+          <span class="day-title">Naples → Fort Myers</span>
+        </div>
+        <div class="day-body">
+          Ritz-Carlton checkout by 11:00 AM. Drive to Fort Myers (~40 min). Check in Residence Inn by 4:00 PM. Gulf Coast Town Center nearby for shopping and dining.
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div class="day-header">
+          <span class="day-date">Thu, Apr 23</span>
+          <span class="day-title">Departure</span>
+        </div>
+        <div class="day-body">
+          Residence Inn checkout by 12:00 PM. Hertz drop-off at RSW by 9:00 AM. UA 2461 departs 11:01 AM → EWR 2:00 PM.
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      Prepared April 1, 2026 &middot; All confirmations verified from email and reservation records
+    </div>
+  </footer>
+
+</body>
+</html>
