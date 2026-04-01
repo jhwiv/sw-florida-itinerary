@@ -324,9 +324,93 @@
       .flight-route { flex-direction: column; align-items: flex-start; gap: 4px; }
       .dining-header { flex-direction: column; align-items: flex-start; gap: 8px; }
     }
+/* ── WELCOME SCREEN ──────────────────────────── */
+#welcome-screen{
+  position:fixed;inset:0;z-index:99999;
+  background:url('https://cache.marriott.com/content/dam/marriott-renditions/RSWGR/rswgr-pool-cabanas-1589-hor-feat.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1920px:*') center/cover no-repeat;
+  display:flex;flex-direction:column;
+  justify-content:flex-end;
+  padding:0 20px 32px;
+}
+#welcome-screen::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom,
+    rgba(27,42,74,.15) 0%,
+    rgba(27,42,74,.35) 25%,
+    rgba(27,42,74,.75) 55%,
+    rgba(27,42,74,.93) 100%);
+  pointer-events:none;
+}
+#welcome-screen.hidden{opacity:0;pointer-events:none;transition:opacity .5s ease}
+#welcome-screen > *:not(.welcome-skip-bar){position:relative;z-index:1}
+.welcome-skip-bar{position:absolute;top:env(safe-area-inset-top,14px);right:16px;z-index:2;padding:14px 0}
+.welcome-skip{font-family:var(--font-body);font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:rgba(255,255,255,.7);background:rgba(0,0,0,.3);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:8px 16px;cursor:pointer}
+.welcome-skip:hover{color:#fff;background:rgba(0,0,0,.5)}
+.welcome-eyebrow{font-family:var(--font-body);font-size:10px;letter-spacing:.25em;text-transform:uppercase;font-weight:600;color:var(--gold-light);margin-bottom:8px}
+.welcome-title{font-family:var(--font-display);font-size:clamp(30px,8vw,44px);font-weight:700;color:#fff;line-height:1.08;margin-bottom:4px;text-shadow:0 2px 12px rgba(0,0,0,.3)}
+.welcome-subtitle{font-family:var(--font-body);font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;color:rgba(255,255,255,.45);margin-bottom:14px}
+.welcome-body{font-family:var(--font-body);font-size:14.5px;line-height:1.55;color:rgba(255,255,255,.65);margin-bottom:16px}
+.welcome-card{background:rgba(255,255,255,.08);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px 16px;margin-bottom:12px}
+.welcome-card-label{font-family:var(--font-body);font-size:9px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--gold-light);margin-bottom:8px}
+.welcome-features{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+.welcome-feature{display:flex;align-items:center;gap:6px;padding:7px 8px;border-radius:8px;background:rgba(255,255,255,.05)}
+.welcome-feature-icon{font-size:15px;flex-shrink:0}
+.welcome-feature-name{font-family:var(--font-body);font-size:9px;letter-spacing:.03em;text-transform:uppercase;font-weight:600;color:rgba(255,255,255,.75)}
+.welcome-install-row{display:flex;gap:8px;margin-bottom:10px}
+.welcome-install-btn{flex:1;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px 12px;cursor:pointer;transition:all .2s}
+.welcome-install-btn:hover,.welcome-install-btn:active{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.25)}
+.welcome-install-icon{font-size:22px;flex-shrink:0}
+.welcome-install-text{display:flex;flex-direction:column}
+.welcome-install-title{font-family:var(--font-body);font-size:10px;letter-spacing:.05em;text-transform:uppercase;font-weight:600;color:rgba(255,255,255,.85)}
+.welcome-install-desc{font-family:var(--font-body);font-size:11px;color:rgba(255,255,255,.4);margin-top:1px}
+.welcome-tip{background:rgba(197,150,58,.1);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(197,150,58,.2);border-radius:10px;padding:10px 14px;margin-bottom:16px}
+.welcome-tip-label{font-family:var(--font-body);font-size:9px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--gold-light);margin-bottom:3px}
+.welcome-tip-text{font-family:var(--font-body);font-size:13px;line-height:1.45;color:rgba(255,255,255,.6)}
+.welcome-enter-btn{display:flex;align-items:center;justify-content:center;font-family:var(--font-body);font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:14px 20px;width:100%;border-radius:8px;background:rgba(255,255,255,.92);color:var(--navy);border:none;cursor:pointer;transition:all .2s;min-height:46px}
+.welcome-enter-btn:hover{background:#fff;transform:translateY(-1px)}
+.welcome-enter-btn:active{transform:scale(.97)}
   </style>
 </head>
 <body>
+
+<!-- WELCOME SCREEN -->
+<div id="welcome-screen">
+  <div class="welcome-skip-bar"><button class="welcome-skip" onclick="dismissWelcome()">Skip ›</button></div>
+  <div class="welcome-eyebrow">Your Travel Companion</div>
+  <h1 class="welcome-title">Southwest<br>Florida</h1>
+  <div class="welcome-subtitle">April 18 – 23, 2026 · Naples & Fort Myers</div>
+  <p class="welcome-body">Your complete trip guide — flights, hotel, dining, golf, beaches, and day-by-day plans at the Ritz-Carlton Tiburón.</p>
+  <div class="welcome-card">
+    <div class="welcome-card-label">What's Inside</div>
+    <div class="welcome-features">
+      <div class="welcome-feature"><span class="welcome-feature-icon">✈️</span><span class="welcome-feature-name">Flights</span></div>
+      <div class="welcome-feature"><span class="welcome-feature-icon">⛳</span><span class="welcome-feature-name">Golf</span></div>
+      <div class="welcome-feature"><span class="welcome-feature-icon">🍽</span><span class="welcome-feature-name">Dining</span></div>
+      <div class="welcome-feature"><span class="welcome-feature-icon">🏖</span><span class="welcome-feature-name">Beaches</span></div>
+      <div class="welcome-feature"><span class="welcome-feature-icon">🚗</span><span class="welcome-feature-name">Rental Car</span></div>
+      <div class="welcome-feature"><span class="welcome-feature-icon">📋</span><span class="welcome-feature-name">Day Plans</span></div>
+    </div>
+  </div>
+  <div class="welcome-install-row">
+    <div class="welcome-install-btn" onclick="alert('In Safari:\n\n1. Tap the Share button ⬆ at the bottom\n2. Scroll down and tap Add to Home Screen\n3. Tap Add')">
+      <span class="welcome-install-icon"></span>
+      <div class="welcome-install-text"><span class="welcome-install-title">iPhone</span><span class="welcome-install-desc">Add to Home Screen</span></div>
+    </div>
+    <div class="welcome-install-btn" onclick="alert('In Chrome:\n\n1. Tap the ⋮ menu in the top right\n2. Tap Add to Home screen or Install app\n3. Tap Install')">
+      <span class="welcome-install-icon">🤖</span>
+      <div class="welcome-install-text"><span class="welcome-install-title">Android</span><span class="welcome-install-desc">Install as App</span></div>
+    </div>
+  </div>
+  <div class="welcome-tip">
+    <div class="welcome-tip-label">✨ Pro Tip</div>
+    <div class="welcome-tip-text">Replace your email app in the dock with this trip icon. You're on vacation.</div>
+  </div>
+  <button class="welcome-enter-btn" onclick="dismissWelcome()">Start Exploring</button>
+</div>
+<script>
+(function(){var ws=document.getElementById('welcome-screen');if(!ws)return;if(localStorage.getItem('swfl-welcomed')){ws.style.display='none';return;}document.body.style.overflow='hidden';})();
+function dismissWelcome(){var ws=document.getElementById('welcome-screen');if(!ws)return;localStorage.setItem('swfl-welcomed','1');ws.classList.add('hidden');document.body.style.overflow='';setTimeout(function(){ws.style.display='none';},600);}
+</script>
 
   <!-- Hero -->
   <header class="hero">
